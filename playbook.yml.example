@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  roles:
+    #- wsm-role1
+    #- wsm-role2

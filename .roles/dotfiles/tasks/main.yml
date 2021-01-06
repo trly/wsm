@@ -1,0 +1,10 @@
+---
+- name: Manage dotfiles
+  file:
+    src: "{{ playbook_dir }}/roles/{{ item.0.role }}/files/{{ item.1.name }}"
+    dest: "{{ lookup('env', 'HOME') }}/{{ item.1.link }}"
+    state: "{{ item.0.state | default('link') }}"
+    force: "{{ dotfiles_overwrite }}"
+  loop: "{{ dotfiles | subelements('files') }}"
+  loop_control:
+    label: "{{ item.1.name }} -> {{ lookup('env', 'HOME') }}/{{ item.1.link }}"

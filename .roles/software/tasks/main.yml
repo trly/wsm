@@ -1,0 +1,8 @@
+---
+- name: install packages
+  become: True
+  apt:
+    name: "{{ software_install_pkg }}"
+    state: present
+    update_cache: True
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
